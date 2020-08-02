@@ -16,7 +16,7 @@ Follow the instruction which is provided by the author and install golang depend
 If successfully installed you would have directory 'go' in your home directory. the go directory has three subdirectory (bin, pgk, src). switch to src directory then clone govwa repository. 
 
 ```
-git clone https://github.com/0c34/govwa.git
+git clone https://github.com/moshelior/govwa.git
 
 git pull (to update)
 
@@ -41,8 +41,8 @@ Open the file config.json which is located in config directory. Change the confi
     "dbname": "govwa",
     "sqlhost": "localhost",
     "sqlport": "3306",
-    "webserver": "http://192.168.56.101",
-    "webport": "8082",
+    "webserver": "http://localhost",
+    "webport": "8089",
 
     "sessionkey:": "G0Vw444"
 }
@@ -50,7 +50,8 @@ Open the file config.json which is located in config directory. Change the confi
 ```
 Run GoVWA 
 ```
-govwa@ubuntu-server:~/go/src/govwa$ go run app.go 
+docker run -d --rm --name mysql -e MYSQL_PORT=3306 -e MYSQL_PASSWORD=test1 -e MYSQL_USER=test1 -e MYSQL_RANDOM_ROOT_PASSWORD=yes -e MYSQL_DATABASE=govwa -p 3306:3306 mariadb:10
+go run app.go 
 ```
 ```
 
@@ -62,8 +63,8 @@ govwa@ubuntu-server:~/go/src/govwa$ go run app.go
   °°ÛÛÛ  °°ÛÛÛ °ÛÛÛ °ÛÛÛ  °°°ÛÛÛÛÛ°     °°°ÛÛÛÛÛ°ÛÛÛÛÛ°    °ÛÛÛ    °ÛÛÛ 
    °°ÛÛÛÛÛÛÛÛÛ °°ÛÛÛÛÛÛ     °°ÛÛÛ         °°ÛÛÛ °°ÛÛÛ      ÛÛÛÛÛ   ÛÛÛÛÛ
      °°°°°°°°°   °°°°°°       °°°           °°°   °°°      °°°°°   °°°°° 
-Server running at port :8082
-Open this url http://192.168.56.101:8082/ on your browser to access GoVWA
+Server running at port :8089
+Open this url http://192.168.56.101:8089/ on your browser to access GoVWA
 
 ```
 Open the url to access GoVWA and follow the setup instruction to create database and tables
